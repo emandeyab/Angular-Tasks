@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta>
+  <title>Slider</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="slider-container">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="a.jpg" alt="Image 1">
+      </div>
+      <div class="carousel-item">
+        <img src="b.jpg" alt="Image 2">
+      </div>
+      <div class="carousel-item">
+        <img src="c.jpg" alt="Image 3">
+      </div>
+    </div>
+    <div class="buttons">
+      <button id="back" class="arrow-btn btn-custom">←</button>
+      <button id="play" class="btn-custom">Play</button>
+      <button id="stop" class="btn-custom">Stop</button>
+      <button id="next" class="arrow-btn btn-custom">→</button>
+    </div>
+  </div>
+
+  <script>
+    let currentIndex = 0;
+    const items = document.querySelectorAll('.carousel-item');
+    let intervalId = null;
+
+    function showSlide(index) {
+      items.forEach(function (item) {
+        item.classList.remove('active');
+      });
+      items[index].classList.add('active');
+    }
+
+    document.getElementById('play').addEventListener('click', function () {
+      if (!intervalId) {
+        intervalId = setInterval(function () {
+          currentIndex = (currentIndex + 1) % items.length;
+          showSlide(currentIndex);
+        }, 1000);
+      }
+    });
+
+    document.getElementById('stop').addEventListener('click', function () {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+    });
+
+    document.getElementById('back').addEventListener('click', function () {
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      showSlide(currentIndex);
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = setInterval(function () {
+          currentIndex = (currentIndex + 1) % items.length;
+          showSlide(currentIndex);
+        }, 1000);
+      }
+    });
+
+    document.getElementById('next').addEventListener('click', function () {
+      currentIndex = (currentIndex + 1) % items.length;
+      showSlide(currentIndex);
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = setInterval(function () {
+          currentIndex = (currentIndex + 1) % items.length;
+          showSlide(currentIndex);
+        }, 1000);
+      }
+    });
+  </script>
+</body>
+</html>

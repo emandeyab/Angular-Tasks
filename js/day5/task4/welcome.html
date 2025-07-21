@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>>
+  <title>Welcome</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #dff0d8;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: #3c763d;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="welcomeMsg"></h1>
+  <p id="visitCount"></p>
+
+  <script>
+    function getCookie(key) {
+      var cookies = document.cookie.split("; ");
+      for (var i = 0; i < cookies.length; i++) {
+        var parts = cookies[i].split("=");
+        if (parts[0] === key) {
+          return decodeURIComponent(parts[1]);
+        }
+      }
+      return null;
+    }
+
+    function setCookie(key, value, days) {
+      var expires = "";
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = key + "=" + value + expires + "; path=/";
+    }
+
+    var name = getCookie("userName");
+    var visits = parseInt(getCookie("visits") || "0");
+
+    visits++;
+
+    setCookie("visits", visits, 1); 
+
+    document.getElementById("welcomeMsg").innerText = "Welcome, " + name + "!";
+    document.getElementById("visitCount").innerText = "You have visited this page " + visits + " times.";
+  </script>
+</body>
+</html>

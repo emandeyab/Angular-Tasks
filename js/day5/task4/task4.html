@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Info</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      text-align: center;
+      padding: 40px;
+    }
+    .gender-images {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 20px 0;
+    }
+    .gender-option {
+      text-align: center;
+    }
+    .gender-option img {
+      width: 100px;
+      height: 100px;
+      display: block;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Enter Your Info</h2>
+  
+  <label>Your Name:</label><br>
+  <input type="text" id="name"><br><br>
+
+  <label>Your Age:</label><br>
+  <input type="number" id="age"><br><br>
+
+  <label>Select your Gender:</label>
+  <div class="gender-images">
+    <div class="gender-option">
+      <img src="m.png" alt="male">
+      <input type="radio" name="gender" value="Male">
+    </div>
+    <div class="gender-option">
+      <img src="f.png" alt="female">
+      <input type="radio" name="gender" value="Female">
+    </div>
+  </div>
+
+  <button onclick="submitData()">Submit</button>
+
+  <script>
+    function setCookie(key, value, days) {
+      var expires = "";
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+    }
+    function submitData() {
+      var nameInput = document.getElementById("name").value;
+      var ageInput = document.getElementById("age").value;
+      var genderInputs = document.getElementsByName("gender");
+      var selectedGender = "";
+
+      for (var i = 0; i < genderInputs.length; i++) {
+        if (genderInputs[i].checked) {
+          selectedGender = genderInputs[i].value;
+          break;
+        }
+      }
+      
+      if (nameInput && ageInput && selectedGender) {
+        setCookie("userName", nameInput, 1);
+        setCookie("userAge", ageInput, 1);
+        setCookie("userGender", selectedGender, 1);
+        setCookie("visits", 0, 7); 
+        window.location.href = "welcome.html";
+      } 
+      else { lert("Please fill all fields.");}
+    }
+  </script>
+</body>
+</html>

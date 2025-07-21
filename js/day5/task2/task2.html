@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Traffic Light</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="traffic-container">
+    <div class="circle red" id="redLight"></div>
+    <div class="circle yellow" id="yellowLight"></div>
+    <div class="circle green" id="greenLight"></div>
+  </div>
+
+  <script>
+    let currentIndex = 0;
+    const lights = [
+      { element: document.getElementById("redLight"), className: "red" },
+      { element: document.getElementById("yellowLight"), className: "yellow" },
+      { element: document.getElementById("greenLight"), className: "green" }
+    ];
+    let intervalId = null;
+    let isMouseOver = false;
+
+    function resetLights() {
+      lights.forEach(function(light) {
+        light.element.classList.remove(light.className);
+      });
+    }
+
+    function cycleLights() {
+      if (!isMouseOver) {
+        resetLights();
+        lights[currentIndex].element.classList.add(lights[currentIndex].className);
+        currentIndex = (currentIndex + 1) % lights.length;
+      }
+    }
+
+    lights.forEach(function(light) {
+      // light.element.addEventListener("mouseenter", function() {
+      //   isMouseOver = true;
+      //   resetLights();
+      //   light.element.classList.add(light.className);
+      // });
+
+      light.element.addEventListener("mouseleave", function() {
+        isMouseOver = false;
+        setTimeout(cycleLights, 1000); 
+      });
+    });
+
+    intervalId = setInterval(cycleLights, 2000);
+  </script>
+</body>
+</html>

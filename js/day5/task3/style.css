@@ -1,0 +1,72 @@
+body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      /* background: linear-gradient(135deg, #65d0d8, #00d4ff); */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+    .slider-container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 600px;
+      backdrop-filter: blur(5px);
+    }
+    .carousel-inner {
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+    }
+    .carousel-item {
+      display: none;
+    }
+    .carousel-item.active {
+      display: block;
+    }
+    .carousel-item img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+    }
+    .buttons {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .btn-custom {
+      padding: 12px 25px;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-custom:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    #play {
+      background-color: #28a745;
+      color: white;
+    }
+    #stop {
+      background-color: #dc3545;
+      color: white;
+    }
+    .arrow-btn {
+      background-color: #007bff;
+      color: white;
+      width: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .arrow-btn:hover {
+      background-color: #0056b3;
+    }

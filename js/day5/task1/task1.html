@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Stopwatch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="stopwatch-container">
+    <div id="timer">00:00:00</div>
+    <div class="buttons">
+      <button id="start">Start</button>
+      <button id="stop">Stop</button>
+      <button id="reset">Reset</button>
+    </div>
+  </div>
+
+  <script>
+    var time = 0, timeoutId = null;
+
+     function formatTimeUnit(unit) {
+      if (unit < 10) {return "0" + unit;}
+      return unit;}
+
+    function updateTimer() {
+      time++;
+      var hours = Math.floor(time / 3600);
+      var minutes = Math.floor((time % 3600) / 60);
+      var seconds = time % 60;
+
+      var formattedTime = formatTimeUnit(hours) + ":" + formatTimeUnit(minutes) + ":" + formatTimeUnit(seconds);
+
+      document.getElementById("timer").textContent = formattedTime;
+      timeoutId = setTimeout(updateTimer, 1000);
+    }
+
+    document.getElementById("start").addEventListener("click", function() {
+      if (!timeoutId) { timeoutId = setTimeout(updateTimer, 1000); }
+    });
+
+    document.getElementById("stop").addEventListener("click", function() {
+      clearTimeout(timeoutId);
+      timeoutId = null;
+    });
+
+    document.getElementById("reset").addEventListener("click", function() {
+      clearTimeout(timeoutId);
+      timeoutId = null;
+      time = 0;
+      document.getElementById("timer").textContent = "00:00:00";
+    });
+  </script>
+</body>
+</html>

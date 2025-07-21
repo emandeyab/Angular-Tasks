@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>task4</title>
+  <style>
+   input {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 10px;
+    /* border: 1px solid #ccc;
+      background-color: #99b2e0; */
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .f {
+      display: inline-block;
+      margin: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #0784b1;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      margin: 20px;
+      cursor: pointer;
+    }
+
+    #result {
+      font-family: monospace;
+      font-size: 18px;
+      color: black;
+      padding: 15px;
+      border: 2px solid #333;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+<div id="c">
+  <div class="f">
+    <label>TagName</label>
+    <input type="text" id="tagInput">
+  </div>
+  <div class="f">
+    <label>className</label>
+    <input type="text" id="classInput">
+  </div>
+  <div class="f">
+    <label>id</label>
+    <input type="text" id="idInput">
+  </div>
+  <div class="f">
+    <label>Name</label>
+    <input type="text" id="nameInput">
+  </div>
+
+  <br>
+  <button onclick="task4()">Count</button>
+
+  <div id="result"></div>
+</div>
+<script>
+  function task4() {
+    var tagName = document.getElementById("tagInput").value;
+    var className = document.getElementById("classInput").value;
+    var idName = document.getElementById("idInput").value;
+    var nameAttr = document.getElementById("nameInput").value;
+
+    var tagCount = document.getElementsByTagName(tagName).length;
+    var classCount = document.getElementsByClassName(className).length;
+    var idExists = document.getElementById(idName) !== null;
+    var nameCount = document.getElementsByName(nameAttr).length;
+
+    document.getElementById("result").innerText =
+      " " + tagName + ": " + tagCount +
+      "   " + className + ": " + classCount +
+      "   " + idName + ": " + idExists +
+      "   " + nameAttr + ": " + nameCount;
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>task3</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div>
+    <button class="btn btn-success btn-custom" onclick="showSuccessAlert()">
+      <i class="bi bi-check-circle"></i> Success Alert
+    </button>
+    <button class="btn btn-danger btn-custom" onclick="showErrorAlert()">
+      <i class="bi bi-x-circle"></i> Error Alert
+    </button>
+  </div>
+  <div id="alertBox">
+    <h4 id="alertTitle"></h4>
+    <p id="alertMessage"></p>
+  </div>
+
+  <script>
+    function showSuccessAlert() {
+      var alertBox = document.getElementById("alertBox");
+      var alertTitle = document.getElementById("alertTitle");
+      var alertMessage = document.getElementById("alertMessage");
+      alertTitle.textContent = "Success";
+      alertTitle.className = "success";
+      alertMessage.textContent = "This is a Success Message";
+      alertBox.style.display = "block";
+    }
+
+    function showErrorAlert() {
+      var alertBox = document.getElementById("alertBox");
+      var alertTitle = document.getElementById("alertTitle");
+      var alertMessage = document.getElementById("alertMessage");
+      alertTitle.textContent = "Error";
+      alertTitle.className = "error";
+      alertMessage.textContent = "This is an Error Message";
+      alertBox.style.display = "block";
+    }
+  </script>
+</body>
+</html>

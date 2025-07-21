@@ -1,0 +1,72 @@
+<!-- 
+ 5,9,2,14,7 
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>task1</title>
+  <style>
+    #parent {
+      padding: 20px;
+    }
+    input {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #3b82f6;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<div id="parent">
+  <input type="text" id="input">
+  <button onclick="task1()">Submit</button>
+  <input type="text" id="secondGreatest">
+  <input type="text" id="secondLowest">
+</div>
+
+<script>
+  function task1() {
+    var input = document.getElementById("input");
+    var secondGreat = document.getElementById("secondGreatest");
+    var secondLow = document.getElementById("secondLowest");
+
+    var numbers = input.value.split(",");
+    var arr = [];
+
+    for (var i = 0; i < numbers.length; i++) {
+      var num = Number(numbers[i]);
+      if (!isNaN(num)) {
+        arr.push(num);
+      }
+    }
+
+    if (arr.length <= 2) {
+      alert("Please enter at least two numbers");
+      return;
+    }
+
+    var set = [...new Set(arr)];
+    if (set.length <= 2) {
+      alert("Please enter at least two different numbers");
+      return;
+    }
+
+
+    var ascending = set.sort(function(a, b) {
+      return a - b;
+    });
+    secondLow.value = ascending[1];
+
+   var descending = set.sort(function(a, b) { 
+    return b - a; 
+    });
+    secondGreat.value = descending[1];
+  }
+</script>
+</body>
+</html>

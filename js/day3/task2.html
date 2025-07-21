@@ -1,0 +1,51 @@
+<!-- 
+ hello this is task2 in lab3
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>task2</title>
+  <style>
+    #parent {
+      padding: 20px;
+    }
+    input {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #3b82f6;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<div id="parent">
+  <input type="text" id="input">
+  <button onclick="task2()">Convert</button>
+  <input type="text" id="output">
+</div>
+
+<script>
+  function task2() {
+    var input = document.getElementById("input");
+    var output = document.getElementById("output");
+
+    var words = input.value.split(' ');
+    var result = [];
+    
+    for (let i = 0; i < words.length; i++) {
+      var word = words[i];
+      if (word.length > 0) {
+        result.push(word[0].toUpperCase() + word.slice(1));
+      } else {
+        result.push(word);
+      }
+    }
+    output.value = result.join(' ');
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>task1</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Validation Game</h2>
+    <form id="validationForm" onsubmit="return task1form(event)">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <div id="nameError" class="error">Name must be at least 4 characters</div>
+      </div>
+      <div class="form-group password-container">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <span class="hide-password" onclick="hidePassword()">&#x1F440;</span>
+        <div id="passwordError" class="error">Password must be at least 8 characters</div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <div id="emailError" class="error">Email not valid</div>
+      </div>
+      <div class="form-group checkbox-group">
+        <label>Gender:</label>
+        <input type="radio" id="male" name="gender" value="male" required> <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female" required> <label for="female">Female</label>
+      </div>
+      <div class="form-group checkbox-group">
+  <label>Sport:</label><br>
+  <input type="checkbox" id="tennis" name="sport" value="tennis">
+  <label for="tennis">Tennis</label><br>
+
+  <input type="checkbox" id="football" name="sport" value="football">
+  <label for="football">Football</label><br>
+
+  <input type="checkbox" id="volleyball" name="sport" value="volleyball">
+  <label for="volleyball">Volleyball</label>
+</div>
+
+      <div class="form-group">
+        <label for="country">Country:</label>
+        <select id="country" name="country" required>
+          <option value="">Select a country</option>
+          <option value="usa">United States</option>
+          <option value="uk">United Kingdom</option>
+          <option value="egypt">Egypt</option>
+          <option value="france">France</option>
+          <option value="germany">Germany</option>
+        </select>
+      </div>
+      <div>
+        <button type="submit" id="submit">Submit</button>
+        <button type="reset" id="reset">Reset</button>
+      </div>
+    </form>
+  </div>
+  <script src="task1.js"></script>
+</body>
+</html>
