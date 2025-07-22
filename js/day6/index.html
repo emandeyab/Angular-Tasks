@@ -8,26 +8,27 @@
 <body>
   <div class="container">
     <h2>Users Data</h2>
-    <button onclick="fetchUsers()">Fetch Users</button>
+    <button id="fetchUsersBtn" onclick="fetchUsers()">Fetch Users</button>
     <input type="number" id="searchInput" placeholder="Enter ID to search">
-    <button onclick="searchUser()">Search by ID</button>
+    <button id="searchUserBtn" onclick="searchUser()">Search by ID</button>
+
     <table id="userTable">
       <thead>
         <tr>
-  <th>Image</th>
-  <th>ID</th>
-  <th>Email</th>
-  <th>Username</th>
-  <th>Phone</th>
-  <th>Website</th>
-  <th>Actions</th>
+        <th>Image</th>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Phone</th>
+        <th>Website</th>
+        <th>Actions</th>
         </tr>
       </thead>
-  <tbody></tbody>
+      <tbody id="userTableBody">
+      </tbody>
     </table>
   </div>
 
-<script src="main.js"></script>
-
+  <script src="main.js"></script>
 </body>
 </html>

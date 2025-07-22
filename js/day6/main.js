@@ -1,117 +1,86 @@
-    function setCookie(name, value, days) {
-      var expires = "";
-      if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
-      }
-      document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
-    }
+var allUsers = [];
+var fetchUsersBtn = document.getElementById("fetchUsersBtn");
+var userIdInput = document.getElementById("searchInput");
+var searchUserBtn = document.getElementById("searchUserBtn");
+var tableBody = document.getElementById("userTableBody");
 
-    function getCookie(name) {
-      var nameEQ = name + "=";
-      var ca = document.cookie.split(';');
-      for (var i = 0; i < ca.length; i++) {
-        var c = ca[i].trim();
-        if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length));
-      }
-      return null;
-    }
+function fetchUsers(){
+var xhr=new XMLHttpRequest();
+xhr.onreadystatechange=function(){
+if(xhr.readyState===4){
+if(xhr.status===200){
+allUsers=JSON.parse(xhr.responseText);
+tableBody.innerHTML="";
+for(var i=0;i<allUsers.length;i++){renderUserRow(allUsers[i]);}
+}
+else{console.error("Error fetching data",xhr.status);}
+}
+};
+xhr.open("GET","https://jsonplaceholder.typicode.com/users");
+xhr.send();}
 
-    function fetchUsers() {
-      fetch('https://jsonplaceholder.typicode.com/users')
-        .then(response => response.json())
-        .then(users => {
-          const tbody = document.querySelector('#userTable tbody');
-          tbody.innerHTML = '';
-          users.forEach(user => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-              <td><img src="https://i.pravatar.cc/50?u=${user.id}" alt="User Image"></td>
-              <td>${user.id}</td>
-              <td>${user.email}</td>
-              <td>${user.username}</td>
-              <td>${user.phone}</td>
-              <td><a href="http://${user.website}" target="_blank">${user.website}</a></td>
-              <td class="actions">
-                <button onclick="deleteUser(${user.id})">Delete</button>
-                <button onclick="viewUser(${user.id})">View</button>
-              </td>
-            `;
-            tbody.appendChild(row);
-            setCookie(`user_${user.id}`, JSON.stringify(user), 7); 
-          });
-        })
-        .catch(error => console.error('Error fetching users:', error));
-    }
+function appendData(content){
+var td=document.createElement("td");td.textContent=content;
+return td;}
 
-    function searchUser() {
-      const id = document.getElementById('searchInput').value;
-      if (id) {
-        const user = getCookie(`user_${id}`);
-        if (user) {
-          const tbody = document.querySelector('#userTable tbody');
-          tbody.innerHTML = '';
-          const userData = JSON.parse(user);
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td><img src="https://i.pravatar.cc/50?u=${userData.id}" alt="User Image"></td>
-            <td>${userData.id}</td>
-            <td>${userData.email}</td>
-            <td>${userData.username}</td>
-            <td>${userData.phone}</td>
-            <td><a href="http://${userData.website}" target="_blank">${userData.website}</a></td>
-            <td class="actions">
-              <button onclick="deleteUser(${userData.id})">Delete</button>
-              <button onclick="viewUser(${userData.id})">View</button>
-            </td>
-          `;
-          tbody.appendChild(row);
-        } else {
-          alert('User not found');
-        }
-      }
-    }
+function searchUser( ){
+var id=userIdInput.value;
+if(!id){return;}
+var xhr=new XMLHttpRequest();
+xhr.onreadystatechange=function(){
+if(xhr.readyState===4){
+tableBody.innerHTML="";
+if(xhr.status===200){
+var user=JSON.parse(xhr.responseText);
+renderUserRow(user);}else{alert("User not found");}
+}};
+xhr.open("GET","https://jsonplaceholder.typicode.com/users/"+id);
+xhr.send();}
 
-    function deleteUser(id) {
-      if (confirm('Are you sure you want to delete this user?')) {
-        document.cookie = `user_${id}=; Max-Age=0; path=/`;
-        const row = document.querySelector(`#userTable tbody tr:nth-child(${id})`);
-        if (row) row.remove();
-        refreshTableFromCookies();
-      }
-    }
+function renderUserRow(userData){
+var tr=document.createElement("tr");
+var imageTd=document.createElement("td");
+var userImg=document.createElement("img");
+userImg.src="https://i.pravatar.cc/100?u="+userData.id;
+imageTd.appendChild(userImg);
 
-    function refreshTableFromCookies() {
-      const tbody = document.querySelector('#userTable tbody');
-      tbody.innerHTML = '';
-      for (let i = 1; i <= 10; i++) { 
-        const user = getCookie(`user_${i}`);
-        if (user) {
-          const userData = JSON.parse(user);
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td><img src="https://i.pravatar.cc/50?u=${userData.id}" alt="User Image"></td>
-            <td>${userData.id}</td>
-            <td>${userData.email}</td>
-            <td>${userData.username}</td>
-            <td>${userData.phone}</td>
-            <td><a href="http://${userData.website}" target="_blank">${userData.website}</a></td>
-            <td class="actions">
-              <button onclick="deleteUser(${userData.id})">Delete</button>
-              <button onclick="viewUser(${userData.id})">View</button>
-            </td>
-          `;
-          tbody.appendChild(row);
-        }
-      }
-    }
+tr.appendChild(imageTd);
+tr.appendChild(appendData(userData.id));
+tr.appendChild(appendData(userData.email));
+tr.appendChild(appendData(userData.username));
+tr.appendChild(appendData(userData.phone));
 
-    function viewUser(id) {
-      const user = getCookie(`user_${id}`);
-      if (user) {
-        window.location.href = `userdetails.html?id=${id}`;
-      } else {
-        alert('User not found');
-      }
-    }
+var siteTd=document.createElement("td");
+var siteLink=document.createElement("a");
+siteLink.href="http://"+userData.website;
+siteLink.textContent=userData.website;
+siteLink.target="_blank";
+siteTd.appendChild(siteLink);
+tr.appendChild(siteTd);
+
+var actionTd=document.createElement("td");
+actionTd.className="action-cell";
+var viewBtn=document.createElement("button");
+viewBtn.textContent="View";
+viewBtn.className="actions-btn view-btn";
+var deleteBtn=document.createElement("button");
+deleteBtn.textContent="Delete";
+deleteBtn.className="actions-btn delete-btn";
+
+viewBtn.addEventListener("click",function(){
+document.cookie="user="+encodeURIComponent(JSON.stringify(userData))+";path=/";
+location.href="userdetails.html";
+});
+
+deleteBtn.addEventListener("click",function(){
+tableBody.removeChild(tr);
+for(var i=0;i<allUsers.length;i++){
+if(allUsers[i].id==userData.id){
+allUsers.splice(i,1);
+break;
+}}});
+
+actionTd.appendChild(viewBtn);
+actionTd.appendChild(deleteBtn);
+tr.appendChild(actionTd);
+tableBody.appendChild(tr);}
