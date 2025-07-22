@@ -4,7 +4,6 @@ function fetchUserDetails() {
     alert("No user data found");
     return;
   }
-
   var user = JSON.parse(decodeURIComponent(userData));
   showUserDetails(user);
 }

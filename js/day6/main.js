@@ -17,11 +17,13 @@ else{console.error("Error fetching data",xhr.status);}
 }
 };
 xhr.open("GET","https://jsonplaceholder.typicode.com/users");
-xhr.send();}
-
-function appendData(content){
+xhr.send();
+}
+function 
+appendData(content){
 var td=document.createElement("td");td.textContent=content;
-return td;}
+return td;
+}
 
 function searchUser( ){
 var id=userIdInput.value;
@@ -35,7 +37,8 @@ var user=JSON.parse(xhr.responseText);
 renderUserRow(user);}else{alert("User not found");}
 }};
 xhr.open("GET","https://jsonplaceholder.typicode.com/users/"+id);
-xhr.send();}
+xhr.send();
+}
 
 function renderUserRow(userData){
 var tr=document.createElement("tr");
