@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta>
+  <title>User's Data</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Users Data</h2>
+    <button onclick="fetchUsers()">Fetch Users</button>
+    <input type="number" id="searchInput" placeholder="Enter ID to search">
+    <button onclick="searchUser()">Search by ID</button>
+    <table id="userTable">
+      <thead>
+        <tr>
+  <th>Image</th>
+  <th>ID</th>
+  <th>Email</th>
+  <th>Username</th>
+  <th>Phone</th>
+  <th>Website</th>
+  <th>Actions</th>
+        </tr>
+      </thead>
+  <tbody></tbody>
+    </table>
+  </div>
+
+<script src="main.js"></script>
+
+</body>
+</html>
