@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <h3 style="text-align: center; margin-bottom: 15px;">Registration Form</h3>
+        <div class="form-group">
+            <label for="first-name">Frist name</label>
+            <input type="text" id="first-name" name="first-name">
+        </div>
+        <div class="form-group">
+            <label for="last-name">Last name</label>
+            <input type="text" id="last-name" name="last-name">
+        </div>
+        <div class="form-group">
+            <label for="username">User name</label>
+            <input type="text" id="username" name="username">
+        </div>
+        <div class="form-group">
+            <label for="password">Pass</label>
+            <input type="password" id="password" name="password">
+        </div>
+        <div class="form-group">
+            <label for="track">Track</label>
+            <select id="track" name="track">
+                <option value="it-course">-- It Course --</option>
+            </select>
+        </div>
+        <div class="form-group gender-group">
+            <label>Gender</label>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label>
+        </div>
+        <div class="form-group favorites-group">
+            <label>Favorites</label><br>
+            <input type="checkbox" id="football" name="favorites" value="football">
+            <label for="football">Football</label>
+            <input type="checkbox" id="basketball" name="favorites" value="basketball">
+            <label for="basketball">Basketball</label><br>
+            <input type="checkbox" id="games" name="favorites" value="games">
+            <label for="games">Games</label>
+            <input type="checkbox" id="reading" name="favorites" value="reading">
+            <label for="reading">Reading</label><br>
+            <input type="checkbox" id="swimming" name="favorites" value="swimming">
+            <label for="swimming">Swimming</label>
+            <input type="checkbox" id="travel" name="favorites" value="travel">
+            <label for="travel">Trave</label>
+        </div>
+        <div class="form-group">
+            <label for="description">Discription</label>
+            <textarea id="description" name="description"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </div>
+        <div class="form-group file-input">
+            <label for="file">Choose File</label>
+            <input type="file" id="file" name="file">
+        </div>
+    </div>
+</body>
+</html>
