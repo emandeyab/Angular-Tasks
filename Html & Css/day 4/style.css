@@ -1,0 +1,130 @@
+* {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: sans-serif;
+      line-height: 1.6;
+    }
+
+    header {
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+    }
+
+    header img {
+      height: 30px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: black;
+      margin-left: 25px;
+      font-weight: bold;
+    }
+
+    .welcome {
+      background: url('a.jpeg');
+      height: 500px;
+      display: flex;
+      align-items: center;
+      padding-left: 60px;
+      color: black;
+    }
+
+    .welcome h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .welcome p {
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background: #007bff;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 60px;
+    }
+
+    .about {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .about img {
+      width: 30%;
+      border-radius: 8px;
+    }
+
+    .about-text {
+      width: 55%;
+    }
+
+    .about h2,
+    .services h2,
+    .contact h2 {
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+
+    .services-boxes {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .service {
+      width: 43%;
+      background: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .service h3 {
+      color: #007bff;
+    }
+
+    .contact form {
+      max-width: 600px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact input,
+    .contact textarea {
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    .contact button {
+      background: #007bff;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    footer {
+      background: black;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
